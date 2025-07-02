@@ -43,12 +43,12 @@ nav {
     margin: 0;
     padding: 0;
     list-style-type: none;
-    li.special {
-      // stili per li dotato di classe "special" dentro ul dentro nav
-    }
-    li:nth-of-type(2) {
-      // stili per il secondo li dentro ul dentro nav
-    }
+    // li.special {
+    // stili per li dotato di classe "special" dentro ul dentro nav
+    // }
+    // li:nth-of-type(2) {
+    // stili per il secondo li dentro ul dentro nav
+    // }
     li {
       font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
       font-size: 0.8em;
@@ -188,4 +188,98 @@ h1.alt {
 
 h1.dark {
   @include main-title();
+}
+
+// 7) INTERPOLAZIONE DI STRINGHE E VALORI
+
+// in JS...
+// const a = 'size'
+// const b = `font-${a}` --> 'font-size'
+
+$a: 'size';
+@mixin test {
+  font-#{$a}: 30px; // font-size: 30px;
+}
+
+p.lead {
+  @include test;
+}
+
+@mixin custom-margin($property, $value) {
+  margin-#{$property}: $value;
+}
+
+p {
+  @include custom-margin('top', 20px);
+  //   sarebbe come scrivere margin-top: 20px
+}
+
+// 8) C  I  C  L  I
+// in SASS è possibile utilizzare i CICLI per AUTOMATIZZARE la generazione di STILI
+// all'interno magari di CLASSI simili
+
+$sizes: 12px, 16px, 20px, 24px;
+// ...una specie di array
+
+@each $single-size in $sizes {
+  // per ogni singola dimensione nell'array $sizes...
+  // $single-size è 12px al primo giro, 16px al secondo, 20px al terzo, 24px all'ultimo
+  .text-#{$single-size} {
+    font-size: $single-size;
+  }
+}
+
+$sizes-map: (
+  small: 12px,
+  medium: 16px,
+  large: 20px,
+  extralarge: 24px,
+);
+
+@each $name, $value in $sizes-map {
+  .text-#{$name} {
+    font-size: $value;
+  }
+}
+
+$colors-map: (
+  primary: blue,
+  secondary: gray,
+  warning: gold,
+  danger: red,
+);
+
+@each $color-name, $color-value in $colors-map {
+  .text-#{$color-name} {
+    color: $color-value;
+  }
+  .bg-#{$color-name} {
+    background-color: $color-value;
+  }
+  .btn-#{$color-name} {
+    color: white;
+    background-color: $color-value;
+  }
+}
+
+// 9) IF/ELSE
+// in SASS è possibile utilizzare delle direttive "condizionali" al fine di
+// prendere delle decisioni sulla base di determinate condizioni, come
+// il valore di una variabile, la comparazione di due valori etc.
+
+@mixin generate-margin($quantity) {
+  // se quantity è maggiore o uguale a 10, allora devo generare un margine di 20px
+  // se quantity è minore di 10, allora devo generare un margine di 0px
+  @if $quantity >= 10 {
+    margin: 20px;
+  } @else {
+    margin: 0px;
+  }
+}
+
+.margin {
+  @include generate-margin(15);
+}
+.no-margin {
+  @include generate-margin(2);
 }

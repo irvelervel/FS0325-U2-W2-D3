@@ -88,4 +88,104 @@ h1.dark {
   font-size: 2em;
   text-align: center;
   color: black;
+}
+
+p.lead {
+  font-size: 30px;
+}
+
+p {
+  margin-top: 20px;
+}
+
+.text-12px {
+  font-size: 12px;
+}
+
+.text-16px {
+  font-size: 16px;
+}
+
+.text-20px {
+  font-size: 20px;
+}
+
+.text-24px {
+  font-size: 24px;
+}
+
+.text-small {
+  font-size: 12px;
+}
+
+.text-medium {
+  font-size: 16px;
+}
+
+.text-large {
+  font-size: 20px;
+}
+
+.text-extralarge {
+  font-size: 24px;
+}
+
+.text-primary {
+  color: blue;
+}
+
+.bg-primary {
+  background-color: blue;
+}
+
+.btn-primary {
+  color: white;
+  background-color: blue;
+}
+
+.text-secondary {
+  color: gray;
+}
+
+.bg-secondary {
+  background-color: gray;
+}
+
+.btn-secondary {
+  color: white;
+  background-color: gray;
+}
+
+.text-warning {
+  color: gold;
+}
+
+.bg-warning {
+  background-color: gold;
+}
+
+.btn-warning {
+  color: white;
+  background-color: gold;
+}
+
+.text-danger {
+  color: red;
+}
+
+.bg-danger {
+  background-color: red;
+}
+
+.btn-danger {
+  color: white;
+  background-color: red;
+}
+
+.margin {
+  margin: 20px;
+}
+
+.no-margin {
+  margin: 0px;
 }/*# sourceMappingURL=app.css.map */
