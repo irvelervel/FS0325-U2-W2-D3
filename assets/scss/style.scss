@@ -1,0 +1,7 @@
+// in questo file io NON andrò ad indicare specificatamente nessuna regola di stile
+// quello che farò sarà IMPORTARE altri file più piccoli ("partials")
+@import './partials/reset'; /* nell'import NON ci va né l'underscore né l'estensione */
+@import './partials/variables';
+@import './partials/mixins';
+@import './partials/header';
+@import './partials/footer';

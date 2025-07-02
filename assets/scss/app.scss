@@ -283,3 +283,10 @@ $colors-map: (
 .no-margin {
   @include generate-margin(2);
 }
+
+// 10) PARTIALS
+// SASS ci permette di lavorare su singoli, piccoli files che possono
+// occuparsi individualmente di determinate porzioni di stile. Questo
+// al fine sempre di avere una codebase organizzata, ordinata e mantenibile.
+
+// ci spostiamo su style.scss
