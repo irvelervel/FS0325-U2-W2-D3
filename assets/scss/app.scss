@@ -1,0 +1,18 @@
+// Questo è un file di stili SCSS
+
+// FEATURES DEL LINGUAGGIO SASS
+// 1)
+// SASS è 100% retrocompatibile con CSS
+// vuol dire che qui dentro possiamo scrivere anche del normalissimo CSS
+body {
+  background-color: #f1f1f1;
+  margin: 0;
+}
+
+// l'asterisco è un selettore "universale"
+// che cattura indiscriminatamente TUTTI i tag
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+// 2)
