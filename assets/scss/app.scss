@@ -15,4 +15,177 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-// 2)
+// 2) SELETTORI ANNIDATI / NIDIFICATI ("nested")
+// invece di...
+// nav {
+//   display: flex;
+//   flex-direction: column;
+// }
+
+// nav ul {
+//   margin: 0;
+//   padding: 0;
+//   list-style-type: none;
+// }
+
+// nav ul li {
+//   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+//   font-size: 0.8em;
+// }
+
+nav {
+  display: flex;
+  flex-direction: column;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    li.special {
+      // stili per li dotato di classe "special" dentro ul dentro nav
+    }
+    li:nth-of-type(2) {
+      // stili per il secondo li dentro ul dentro nav
+    }
+    li {
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: 0.8em;
+      @media screen and (min-width: 768px) {
+        font-size: 1em;
+      }
+    }
+  }
+}
+
+// 3) LAVORARE CON LE PSEUDOCLASSI
+// invece di...
+// button.primary {
+//   background-color: blue;
+// }
+// button.primary:hover {
+//   background-color: aqua;
+// }
+// button.secondary {
+//   background-color: red;
+// }
+// button.secondary:hover {
+//   background-color: pink;
+// }
+
+button.primary {
+  background-color: blue;
+  &:hover {
+    background-color: aqua;
+  }
+  //   il simbolo & è un puntatore che riprende lo stesso selettore [cit. Claudio]
+}
+
+button.secondary {
+  background-color: red;
+  &:hover {
+    background-color: pink;
+  }
+}
+// D R Y -> Don't Repeat Yourself
+
+// 4) PREFISSO COMUNE PER PROPRIETÀ SIMILI
+// invece di...
+// p {
+//   font-size: 1.1em;
+//   font-style: italic;
+//   font-family: Arial, Helvetica, sans-serif;
+//   font-weight: 300;
+// }
+
+p {
+  font: {
+    size: 1.1em;
+    style: italic;
+    family: Arial, Helvetica, sans-serif;
+    weight: 300;
+  }
+}
+
+// 5) VARIABILI
+// le variabili in SASS servono per memorizzare un valore.
+// concettualmente in SASS le variabili servono non tanto per proseguire in un
+// ragionamento ma per fornire un nome riutilizzabile a determinati valori
+// inoltre anche se si chiamano "variabili" concettualmente sono più simili a costanti
+
+// quali tipi di valore possiamo memorizzare in SASS?
+// - valori numerici (1, 50, 10px, 2em, 1.25rem etc.)
+// - stringhe ('ciao', 'hello')
+// - colori (#f1f1f1, red, rebeccapurple, etc.)
+// - booleani (true, false)
+// - null
+// - valori "combinati" per proprietà shortcut (2px solid red, 0 auto, etc.)
+// - LISTA di valori (10px, 16px, 24px) -> un po' gli array in JS
+// - MAPPE di coppie chiave:valore -> un po' come gli oggetti in JS
+
+// come si dichiara una variabile in SASS?
+// come si USA una variabile in SASS?
+$my-beautiful-variable: 50px;
+#rettangolo {
+  width: $my-beautiful-variable;
+}
+// quindi la dichiarazione e l'utilizzo delle variabili in SASS, nonostante come in
+// JS siano due fasi ben distinte, si effettuano sempre con il $ prima del nome
+// della variabili
+
+$main-margin: 2em;
+$primary-color: #5ba453;
+$default-font-size: 1.2em;
+$btn-padding: 1.2em;
+
+header button {
+  background-color: $primary-color;
+  font-size: $default-font-size;
+  padding-left: $btn-padding;
+  padding-right: $btn-padding;
+}
+
+// 6) MIXINS
+// un MIXIN è un "blocco" di regole CSS richiamabili con un nome
+
+@mixin centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+$standard-width: 200px;
+$standard-height: 150px;
+$standard-border: 2px solid red;
+
+@mixin miobordo {
+  border: $standard-border;
+}
+
+.box {
+  width: $standard-width;
+  height: $standard-height;
+  @include miobordo;
+  @include centered;
+}
+
+// i mixin possono essere "personalizzati"
+// i mixin possono accettare PARAMETRI
+@mixin main-title($color: black) {
+  font-size: 2em;
+  text-align: center;
+  color: $color;
+}
+
+h1 {
+  @include main-title(lightgreen);
+}
+
+h1.alt {
+  @include main-title(lightcyan);
+}
+
+h1.dark {
+  @include main-title();
+}
